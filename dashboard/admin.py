@@ -5,25 +5,11 @@ from .models import Family, Child
 # Register your models here.
 
 class FamilyAdmin(admin.ModelAdmin):
-    # list_display = ('father', 'mother', 'location', 'dependent_children')
-    # list_filter = ('father', 'mother', 'location', 'dependent_children')
-    # search_fields = ('father', 'mother', 'location', 'dependent_children')
-    # ordering = ('father', 'mother', 'location', 'dependent_children')
-
-    # # fieldsets = (
-    # #     (None, {
-    # #         'fields': ('father', 'father_alive', 'father_phone', 'father_email', 'father_occupation', 'father_occupation_other', 'mother', 'mother_alive', 'mother_phone', 'mother_email', 'mother_occupation', 'mother_occupation_other', 'location', 'dependent_children', 'religion', 'income')
-    # #     }),
-    # # )
-
-    # # add_fieldsets = (
-    # #     (None, {
-    # #         'classes': ('wide',),
-    # #         'fields': ('father', 'father_alive', 'father_phone', 'father_email', 'father_occupation', 'father_occupation_other', 'mother', 'mother_alive', 'mother_phone', 'mother_email', 'mother_occupation', 'mother_occupation_other', 'location', 'dependent_children', 'religion', 'income')
-    # #     }),
-    # # )
-    pass
-
+    list_display = ('father', 'mother', 'location', 'dependent_children', 'father_phone', 'mother_phone', 'father_email', 'mother_email', 'father_occupation', 'mother_occupation', 'father_occupation_other', 'mother_occupation_other', 'religion')
+    list_filter = ('father', 'mother', 'location', 'dependent_children', 'father_alive', 'mother_alive')
+    search_fields = ('father', 'mother', 'location', 'dependent_children')
+    ordering = ('father', 'mother', 'location', 'dependent_children')
+    
 
 
 class HasFamilyFilter(admin.SimpleListFilter):
@@ -68,9 +54,9 @@ class AgeFilter(admin.SimpleListFilter):
             return queryset.filter(date_of_birth__lte=datetime.date.today() - datetime.timedelta(days=365*18))        
 
 class ChildAdmin(admin.ModelAdmin):
-    list_display = ('name', 'age', 'family', 'picture_tag')
-    search_fields = ('name', 'age', 'family')
-    list_filter = (HasFamilyFilter, AgeFilter, 'name', 'family')
+    list_display = ('names', 'age', 'family', 'picture_tag')
+    search_fields = ('names', 'age', 'family')
+    list_filter = (HasFamilyFilter, AgeFilter, 'names', 'family')
 
     
 
