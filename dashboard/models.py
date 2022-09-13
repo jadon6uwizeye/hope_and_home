@@ -45,7 +45,7 @@ class Child(models.Model):
         verbose_name_plural = "Children"
 
     def __str__(self):
-        return self.name
+        return self.names
 
     @property
     def has_family(self):
@@ -57,6 +57,12 @@ class Child(models.Model):
         return f" {int(age.days/365.25)} years old, {int(age.days%365.25/30.5)} months"    
 
     def picture_tag(self):
-        return mark_safe('<img src="{}" height="150" width="200"/>'.format(self.picture.url))
+        if self.picture:
+            return mark_safe('<img src="{}" height="150" width="200"/>'.format(self.picture.url))
+        else:
+            return 'No Image'
+        
     picture_tag.short_description = 'Picture'
     picture_tag.allow_tags = True
+    picture_tag.admin_order_field = 'picture'
+    picture_tag.empty_value_display = 'No Image'

@@ -1,8 +1,12 @@
 import datetime
 from django.utils.translation import gettext_lazy as _
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from .models import Family, Child
 # Register your models here.
+
+admin.site.site_header = 'Hope And Homes For Children Dashboard'
+admin.site.unregister(Group)
 
 class FamilyAdmin(admin.ModelAdmin):
     list_display = ('father', 'mother', 'location', 'dependent_children', 'father_phone', 'mother_phone', 'father_email', 'mother_email', 'father_occupation', 'mother_occupation', 'father_occupation_other', 'mother_occupation_other', 'religion')
