@@ -17,6 +17,11 @@
     <h2 class="fs-title">Family information</h2>
     <h3 class="fs-subtitle">information for the family</h3>
     {{form.as_p}}
+    {% comment %}python if condition {% endcomment %}
+    {% if familly %}
+     {{familly}}
+      <input type="text" name="family" value={{familly}} hidden>
+    {% endif %}
     <input name="next" class="next action-button" value="Next" type="submit" />
 </fieldset>
     <!-- progressbar -->

@@ -14,13 +14,13 @@ def home(request):
     return render(request, 'index.html', {"children": children})
 
 @csrf_exempt
-def family(request):
+def family(request, child):
     if request.method == 'POST':
         form = FamilyForm(request.POST)
         if form.is_valid():
             form.save()
             print(form)
-            return redirect('addoption', family=form.instance)
+            return redirect('addoption', family=form.instance.id, child=child)
         else:
             print(form.errors)
             return render(request, 'addoption.html', {'form': form},status=400)
@@ -28,11 +28,19 @@ def family(request):
         form = FamilyForm()
     return render(request, 'addoption.html', {'form': form})
 
-def addoption(request):
+def addoption(request, family, child):
+    print("here")
+    print(child)
+    # add family to the POST request
+    request.POST.family = family
+    request.POST.child = child
     if request.method == 'POST':
         form = AddoptionForm(request.POST)
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
+            obj.family = Family.objects.get(id=family)
+            obj.child = Child.objects.get(id=child)
+            obj.save()
             return render(request, 'success.html')
         else:
             print(form.errors)

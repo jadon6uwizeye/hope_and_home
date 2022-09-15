@@ -148,7 +148,7 @@ Licence URI: https://www.os-templates.com/template-terms
       {% for child in children %}
 
       <li class="one_third" href="#">
-        <article><a class="imgover" href={% url 'addoption' %}><img src={{child.picture.url}} height="150" width="200" alt=""></a>
+        <article><a class="imgover" href={% url 'addoption-1' child=child.id %}><img src={{child.picture.url}} height="150" width="200" alt=""></a>
           <h6 class="heading">{{child.names}}</h6>
           <p>Gender : {{child.gender}}</p>
         </br>

@@ -86,4 +86,4 @@ class Addoption(models.Model):
         verbose_name_plural = "Addoptions"
 
     def __str__(self):
-        return self.child.names + " added to " + self.family.father + " and " + self.family.mother
+        return self.child.names + " in family of " + self.family.father + " and " + self.family.mother
