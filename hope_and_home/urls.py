@@ -21,9 +21,10 @@ from web import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('addoption/', views.addoption, name='addoption'),
+    path('addoption/', views.family, name='addoption'),
     path('admin/', admin.site.urls, name='admin'),
-    path('addoption/family/', views.FamilyView.as_view(), name='family'),
+    path('addoption/family/', views.family, name='family'),
+    path('addoption/addoption/', views.addoption, name='family'),
 ]
 
 if settings.DEBUG:

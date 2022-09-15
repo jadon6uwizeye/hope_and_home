@@ -335,7 +335,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 
 /* Rows */
 .row0, .row0 a{}
-.row1{color:#FFFFFF; background-color:linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));}
+.row1{color:#eee4a1; background-color:#312f0c;}
 .row2{color:#474747; background-color:#F4F4F4;}
 .row3{color:#474747; background-color:#FFFFFF;}
 .row4{color:#A5A6AA; background-color:linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));}

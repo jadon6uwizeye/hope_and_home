@@ -13,25 +13,28 @@ def home(request):
     return render(request, 'index.html', {"children": children})
 
 @csrf_exempt
+def family(request):
+    if request.method == 'POST':
+        form = FamilyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'addoption.html', {"form": form}, status=201)
+        else:
+            print(form.errors)
+            return render(request, 'addoption.html', {'form': form},status=400)
+    else:
+        form = FamilyForm()
+    return render(request, 'addoption.html', {'form': form})
+
 def addoption(request):
     if request.method == 'POST':
-        form = FamilyForm(request.POST)
+        form = AddoptionForm(request.POST)
         if form.is_valid():
             form.save()
-    form = FamilyForm()
-    return render(request, 'addoption.html', {"form": form})
-
-class FamilyView(ListCreateAPIView):
-    queryset = Family.objects.all()
-    serializer_class = FamilySerializer
-
-#validate family form and return errors back to the page
-@csrf_exempt
-def validate_family(request):
-    if request.method == 'POST':
-        form = FamilyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'addoption.html', {"form": form}, status=200)
+            return render(request, 'addoption.html', {"form": form}, status=201)
         else:
-            return render(request, 'addoption.html', {"form": form}, status=400)
+            print(form.errors)
+            return render(request, 'addoption.html', {'form': form},status=400)
+    else:
+        form = AddoptionForm()
+    return render(request, 'addoption.html', {'form': form})
