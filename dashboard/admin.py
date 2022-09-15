@@ -2,7 +2,7 @@ import datetime
 from django.utils.translation import gettext_lazy as _
 from django.contrib import admin
 from django.contrib.auth.models import Group
-from .models import Family, Child
+from .models import Addoption, Family, Child
 # Register your models here.
 
 admin.site.site_header = 'Hope And Homes For Children Dashboard'
@@ -66,3 +66,4 @@ class ChildAdmin(admin.ModelAdmin):
 
 admin.site.register(Family, FamilyAdmin)
 admin.site.register(Child, ChildAdmin)
+admin.site.register(Addoption)

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from http.client import HTTPResponse
+from django.shortcuts import render, redirect
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from django.views.decorators.csrf import csrf_exempt
 from dashboard.models import Child
@@ -18,7 +19,8 @@ def family(request):
         form = FamilyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'addoption.html', {"form": form}, status=201)
+            print(form)
+            return redirect('addoption', family=form.instance)
         else:
             print(form.errors)
             return render(request, 'addoption.html', {'form': form},status=400)
@@ -31,7 +33,7 @@ def addoption(request):
         form = AddoptionForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'addoption.html', {"form": form}, status=201)
+            return render(request, 'success.html')
         else:
             print(form.errors)
             return render(request, 'addoption.html', {'form': form},status=400)
