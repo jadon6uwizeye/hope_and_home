@@ -133,12 +133,12 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="bgded overlay light" style="background-image:url('images/demo/backgrounds/01.jpg');">
+<div class="bgded overlay light" style="background: linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));">
   <section id="services" class="hoc container clear"> 
     <!-- ################################################################################################ -->
     <div class="sectiontitle">
       <p class="heading font-x2">Here are the children who are need of a family</p>
-      <h6 class="nospace font-xs">click an image and Help by addopting one atleast</h6>
+      <h6 class="nospace font-xs">click and image and Help by addopting one atleast</h6>
     </div>
     <ul class="nospace group elements elements-three">
       {% if not children %}
@@ -148,7 +148,7 @@ Licence URI: https://www.os-templates.com/template-terms
       {% for child in children %}
 
       <li class="one_third" href="#">
-        <article><a class="imgover" href="#"><img src={{child.picture.url}} height="150" width="200" alt=""></a>
+        <article><a class="imgover" href={% url 'addoption' %}><img src={{child.picture.url}} height="150" width="200" alt=""></a>
           <h6 class="heading">{{child.names}}</h6>
           <p>Gender : {{child.gender}}</p>
         </br>

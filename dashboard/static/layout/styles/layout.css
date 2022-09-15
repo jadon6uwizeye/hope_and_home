@@ -287,7 +287,7 @@ td{border-width:0 1px;}
 .faico li:last-child{margin-right:0;}
 .faico a{display:inline-block; width:36px; height:36px; line-height:36px; font-size:18px; text-align:center;}
 
-.faico a{color:inherit; background-color:#cdae14;}
+.faico a{color:inherit; background-color:linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));}
 .faico a:hover{color:#FFFFFF;}
 
 .faicon-dribble:hover{background-color:#EA4C89;}
@@ -307,7 +307,7 @@ td{border-width:0 1px;}
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
-body{color:#A5A6AA; background-color:#cdae14;}
+body{color:#A5A6AA; background-color:linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));}
 a{color:#97A9BD;}
 a:active, a:focus{background:transparent !important;}/* IE10 + 11 Bugfix - prevents grey background */
 hr, .borderedbox{border-color:#D7D7D7;}
@@ -335,10 +335,10 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 
 /* Rows */
 .row0, .row0 a{}
-.row1{color:#FFFFFF; background-color:#cdae14;}
+.row1{color:#FFFFFF; background-color:linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));}
 .row2{color:#474747; background-color:#F4F4F4;}
 .row3{color:#474747; background-color:#FFFFFF;}
-.row4{color:#A5A6AA; background-color:#cdae14;}
+.row4{color:#A5A6AA; background-color:linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));}
 .row5, .row5 a{color:#A5A6AA; background-color:#282E39;}
 .coloured{color:#FFFFFF; background-color:#97A9BD;}
 
@@ -360,7 +360,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 /* ###### DELETE THE FOLLOWING IF ONLY THE DEFAULT COLOUR IS REQUIRED ###### */
 #introblocks .elements li article{color:#FFFFFF; background-color:#97A9BD;}/* Blue */
 #introblocks .elements li article a i{color:#97A9BD; background-color:#FFFFFF;}/* Blue */
-#introblocks .elements li article:hover{color:#cdae14; background-color:#FFFFFF !important;}
+#introblocks .elements li article:hover{color:linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6)); background-color:#FFFFFF !important;}
 #introblocks .elements li article:hover a i{color:#FFFFFF !important; background-color:#97A9BD;}
 #introblocks .elements li:nth-child(2) article, #introblocks .elements li:nth-child(2) article:hover a i{background-color:#A197BD;}/* Purple */
 #introblocks .elements li:nth-child(2) article a i{color:#A197BD;}/* Purple */

@@ -47,6 +47,9 @@ class Child(models.Model):
     def __str__(self):
         return self.names
 
+    def __unicode__(self):
+        return '%s' % self.names
+
     @property
     def has_family(self):
         return self.family is not None
@@ -66,3 +69,21 @@ class Child(models.Model):
     picture_tag.allow_tags = True
     picture_tag.admin_order_field = 'picture'
     picture_tag.empty_value_display = 'No Image'
+
+
+class Addoption(models.Model):
+    child = models.ForeignKey(Child, on_delete=models.CASCADE)
+    family = models.ForeignKey(Family, on_delete=models.CASCADE)
+    id_photo = models.ImageField(upload_to='images/', null=True, blank=True)
+    id_number = models.CharField(max_length=100, blank=True, null=True)
+    marriage_certificate = models.ImageField(upload_to='images/', null=True, blank=True)
+    criminal_record = models.ImageField(upload_to='images/', null=True, blank=True)
+    date_requested = models.DateField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Addoption"
+        verbose_name_plural = "Addoptions"
+
+    def __str__(self):
+        return self.child.names + " added to " + self.family.father + " and " + self.family.mother
