@@ -74,10 +74,10 @@ class Child(models.Model):
 class Addoption(models.Model):
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
     family = models.ForeignKey(Family, on_delete=models.CASCADE)
-    id_photo = models.ImageField(upload_to='images/', null=True, blank=True)
+    id_photo = models.ImageField(upload_to='images/')
     id_number = models.CharField(max_length=100, blank=True, null=True)
-    marriage_certificate = models.ImageField(upload_to='images/', null=True, blank=True)
-    criminal_record = models.ImageField(upload_to='images/', null=True, blank=True)
+    marriage_certificate = models.ImageField(upload_to='images/')
+    criminal_record = models.ImageField(upload_to='images/',)
     date_requested = models.DateField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 

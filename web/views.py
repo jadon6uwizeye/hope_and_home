@@ -35,7 +35,7 @@ def addoption(request, family, child):
     request.POST.family = family
     request.POST.child = child
     if request.method == 'POST':
-        form = AddoptionForm(request.POST)
+        form = AddoptionForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.family = Family.objects.get(id=family)
