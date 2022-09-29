@@ -2,6 +2,8 @@ from http.client import HTTPResponse
 from django.shortcuts import render, redirect
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import send_mail
+from django.conf import settings
 from dashboard.models import Child
 from .forms import AddoptionForm, FamilyForm
 from .serializers import FamilySerializer
@@ -48,3 +50,30 @@ def addoption(request, family, child):
     else:
         form = AddoptionForm()
     return render(request, 'addoption.html', {'form': form})
+
+# send email to email from email given
+def sendMail(request):
+    if request.method == 'POST':
+        try:
+            print(request)
+            name = request.POST.get('name')
+            email = request.POST['email']
+            message = request.POST['message']
+            print(send_mail(
+                'Hope and Home user email',
+                f"Email from {name}, with email {email} has sent the following message \n\n {message}",
+                email,
+                [settings.EMAIL_HOST_USER],
+                fail_silently=False,
+            ))
+            print("email sent \n\n", email)
+
+            # redirect to home url
+            return redirect('home')
+        except Exception as e:
+            print("error sending email\n\n\n\n\n")
+            print(e)
+            return redirect('home')
+
+    else:
+        return redirect('home')

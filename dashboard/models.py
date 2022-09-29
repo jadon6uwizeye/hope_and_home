@@ -37,7 +37,7 @@ class Child(models.Model):
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='M')
     family = models.ForeignKey(Family, on_delete=models.CASCADE, null=True, blank=True)
-    picture = models.ImageField(upload_to='images/', null=True, blank=True)
+    picture = models.ImageField(upload_to='images/')
     about = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -72,6 +72,13 @@ class Child(models.Model):
 
 
 class Addoption(models.Model):
+    status_choices = (
+        ('P', 'Pending'),
+        ('A', 'Approved'),
+        ('R', 'Rejected'),
+    )
+
+
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
     family = models.ForeignKey(Family, on_delete=models.CASCADE)
     id_photo = models.ImageField(upload_to='images/')
@@ -80,10 +87,25 @@ class Addoption(models.Model):
     criminal_record = models.ImageField(upload_to='images/',)
     date_requested = models.DateField(auto_now_add=True)
     approved = models.BooleanField(default=False)
+    status = models.CharField(max_length=1, choices=status_choices, default='P')
 
     class Meta:
         verbose_name = "Addoption"
         verbose_name_plural = "Addoptions"
+
+    def __str__(self):
+        return self.child.names + " in family of " + self.family.father + " and " + self.family.mother
+
+
+class VisitSchedule(models.Model):
+    child = models.ForeignKey(Child, on_delete=models.CASCADE)
+    family = models.ForeignKey(Family, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.TimeField()
+
+    class Meta:
+        verbose_name = "Visit Schedule"
+        verbose_name_plural = "Visit Schedules"
 
     def __str__(self):
         return self.child.names + " in family of " + self.family.father + " and " + self.family.mother

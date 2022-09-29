@@ -1,8 +1,9 @@
 import datetime
 from django.utils.translation import gettext_lazy as _
+from django.utils.html import format_html
 from django.contrib import admin
 from django.contrib.auth.models import Group
-from .models import Addoption, Family, Child
+from .models import Addoption, Family, Child, VisitSchedule
 # Register your models here.
 
 admin.site.site_header = 'Hope And Homes For Children Dashboard'
@@ -62,8 +63,33 @@ class ChildAdmin(admin.ModelAdmin):
     search_fields = ('names', 'age', 'family')
     list_filter = (HasFamilyFilter, AgeFilter, 'names', 'family')
 
-    
+class AddoptionAdmin(admin.ModelAdmin):
+    list_display = ('child', 'family', 'addoption_status', 'approved')
+    list_filter = ('child', 'family', 'status', 'approved')
+    search_fields = ('child', 'family', 'status', 'approved')
+    ordering = ('child', 'family', 'status', 'approved')
+
+    def addoption_status(self, obj):
+        colors = {
+            'Pending': '#9C9206',
+            'Approved': 'green',
+            'Rejected': 'red',
+        }
+        # get status from enum as whole word
+        status = obj.get_status_display()
+        return format_html(
+            '<span style="color: {};">{}</span>',
+            colors[status],
+            status,
+        )
+
+class VisitScheduleAdmin(admin.ModelAdmin):
+    list_display = ('child', 'family', 'date', 'time')
+    list_filter = ('child', 'family', 'date', 'time')
+    search_fields = ('child', 'family', 'date', 'time')
+    ordering = ('child', 'family', 'date', 'time')
 
 admin.site.register(Family, FamilyAdmin)
 admin.site.register(Child, ChildAdmin)
-admin.site.register(Addoption)
+admin.site.register(Addoption, AddoptionAdmin)
+admin.site.register(VisitSchedule, VisitScheduleAdmin)

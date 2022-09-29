@@ -88,12 +88,8 @@ WSGI_APPLICATION = 'hope_and_home.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE':   env("DEV_DB_ENGINE"),
-        'NAME':     env("DEV_DB_NAME"),
-        'USER':     env("DEV_DB_USER"),
-        'PASSWORD': env("DEV_DB_PASSWORD"),
-        'HOST':     env("DEV_DB_HOST"),
-        'PORT':     env("DEV_DB_PORT")
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
