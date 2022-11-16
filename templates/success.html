@@ -23,6 +23,7 @@
         }
       i {
         color: #9ABC66;
+        
         font-size: 100px;
         line-height: 200px;
         margin-left:-15px;
@@ -43,7 +44,9 @@
       </div>
         <h1>Success</h1> 
         <p>We received your addoption request<br/> we'll be in touch shortly!</p>
+        <br/>
+        {% comment %} link to go to home url name {% endcomment %}
+        <a href="{% url 'home' %}"><input type="button" value="Go Back" onclick="{% url 'home' %}" /></a>
       </div>
-      <input type="button" value="Go Back" onclick="{% url 'home' %}" />
     </body>
 </html>

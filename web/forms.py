@@ -5,7 +5,7 @@ from dashboard.models import Family, Addoption
 class AddoptionForm(ModelForm):
     class Meta:
         model = Addoption
-        exclude = ['approved','family','child']
+        exclude = ['approved','family','child', 'status']
 
 
 

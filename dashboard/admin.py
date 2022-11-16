@@ -10,7 +10,7 @@ admin.site.site_header = 'Hope And Homes For Children Dashboard'
 admin.site.unregister(Group)
 
 class FamilyAdmin(admin.ModelAdmin):
-    list_display = ('father', 'mother', 'location', 'dependent_children', 'father_phone', 'mother_phone', 'father_email', 'mother_email', 'father_occupation', 'mother_occupation', 'father_occupation_other', 'mother_occupation_other', 'religion')
+    list_display = ('father', 'mother', 'location', 'dependent_children', 'father_phone', 'mother_phone', 'father_email', 'mother_email', 'father_occupation', 'mother_occupation', 'father_occupation_other', 'mother_occupation_other', 'religion','ubudehe')
     list_filter = ('father', 'mother', 'location', 'dependent_children', 'father_alive', 'mother_alive')
     search_fields = ('father', 'mother', 'location', 'dependent_children')
     ordering = ('father', 'mother', 'location', 'dependent_children')

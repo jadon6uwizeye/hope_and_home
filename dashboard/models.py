@@ -20,6 +20,7 @@ class Family(models.Model):
     location = models.CharField(max_length=100)
     dependent_children = models.IntegerField()
     religion = models.CharField(max_length=100, blank=True, null=True)
+    ubudehe = models.CharField(max_length=15)
 
     class Meta:
         verbose_name = "Family"
