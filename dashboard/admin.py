@@ -10,10 +10,10 @@ admin.site.site_header = 'Hope And Homes For Children Dashboard'
 admin.site.unregister(Group)
 
 class FamilyAdmin(admin.ModelAdmin):
-    list_display = ('father', 'mother', 'location', 'dependent_children', 'father_phone', 'mother_phone', 'father_email', 'mother_email', 'father_occupation', 'mother_occupation', 'father_occupation_other', 'mother_occupation_other', 'religion','ubudehe')
-    list_filter = ('father', 'mother', 'location', 'dependent_children', 'father_alive', 'mother_alive')
-    search_fields = ('father', 'mother', 'location', 'dependent_children')
-    ordering = ('father', 'mother', 'location', 'dependent_children')
+    list_display = ('father', 'mother', 'province','district','sector','cell','village','isibo', 'dependent_children', 'father_phone', 'mother_phone', 'father_email', 'mother_email', 'father_occupation', 'mother_occupation', 'father_occupation_other', 'mother_occupation_other', 'religion','ubudehe')
+    list_filter = ('father', 'mother', 'province','district','sector','cell','village','isibo', 'dependent_children', 'father_alive', 'mother_alive')
+    search_fields = ('father', 'mother', 'province','district','sector','cell','village','isibo', 'dependent_children')
+    ordering = ('father', 'mother', 'province','district','sector','cell','village','isibo', 'dependent_children')
     
 
 
@@ -82,6 +82,50 @@ class AddoptionAdmin(admin.ModelAdmin):
             colors[status],
             status,
         )
+    def has_module_permission(self, request) -> bool:
+        if request.user.is_staff or request.user.is_superuser:
+            return True
+        return False
+
+    
+    
+    # confirm addoption only visible for users not superuser
+    # add confirm_addoption action
+    actions = ['confirm_addoption','approve_addoption',]
+
+    def confirm_addoption(self, request, queryset):
+        queryset.update(confirmed=True)
+
+    def approve_addoption(self, request, queryset):
+        queryset.update(approved=True)
+
+    def has_add_permission(self, request) -> bool:
+        if not request.user.is_superuser:
+            return False
+        else:
+            return True
+
+    def has_delete_permission(self, request, obj=None):
+        # if user is not superuser return False
+        if not request.user.is_superuser:
+            return False
+        return True
+
+    def has_change_permission(self, request, obj=None):
+        # if user is not superuser return False
+        if not request.user.is_superuser:
+            return False
+        else:
+            return True
+
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        print(actions)
+        if request.user.is_superuser:
+            del actions['confirm_addoption']
+            return actions
+        del actions['approve_addoption']
+        return actions
 
 class VisitScheduleAdmin(admin.ModelAdmin):
     list_display = ('child', 'family', 'date', 'time')

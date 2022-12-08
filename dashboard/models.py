@@ -17,7 +17,12 @@ class Family(models.Model):
     mother_occupation = models.CharField(max_length=100, blank=True, null=True)
     mother_occupation_other = models.CharField(max_length=100, blank=True, null=True)
 
-    location = models.CharField(max_length=100)
+    province = models.CharField(max_length=25)
+    district = models.CharField(max_length=25)
+    sector = models.CharField(max_length=25)
+    cell = models.CharField(max_length=25)
+    village = models.CharField(max_length=25)
+    isibo = models.CharField(max_length=25)
     dependent_children = models.IntegerField()
     religion = models.CharField(max_length=100, blank=True, null=True)
     ubudehe = models.CharField(max_length=15)
@@ -87,6 +92,7 @@ class Addoption(models.Model):
     marriage_certificate = models.ImageField(upload_to='images/')
     criminal_record = models.ImageField(upload_to='images/',)
     date_requested = models.DateField(auto_now_add=True)
+    confirmed = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
     status = models.CharField(max_length=1, choices=status_choices, default='P')
 
