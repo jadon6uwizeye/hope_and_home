@@ -64,7 +64,7 @@ class ChildAdmin(admin.ModelAdmin):
     list_filter = (HasFamilyFilter, AgeFilter, 'names', 'family')
 
 class AddoptionAdmin(admin.ModelAdmin):
-    list_display = ('child', 'family', 'addoption_status', 'approved')
+    list_display = ('child', 'family', 'addoption_status', 'approved', 'confirmed')
     list_filter = ('child', 'family', 'status', 'approved')
     search_fields = ('child', 'family', 'status', 'approved')
     ordering = ('child', 'family', 'status', 'approved')
@@ -98,6 +98,7 @@ class AddoptionAdmin(admin.ModelAdmin):
 
     def approve_addoption(self, request, queryset):
         queryset.update(approved=True)
+        queryset.update(status='Approved')
 
     def has_add_permission(self, request) -> bool:
         if not request.user.is_superuser:
